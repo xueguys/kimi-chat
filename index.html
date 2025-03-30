@@ -311,7 +311,7 @@
     <div id="chat-container">
         <div id="chat-history"></div>
         <div class="input-container">
-            <input type="text" id="message-input" placeholder="输入消息...">
+            <input type="text" id="message-input" placeholder="请输入文本...">
             <button id="send-button">发送</button>
         </div>
     </div>
@@ -420,9 +420,9 @@
                         'Authorization': `Bearer ${API_KEY}`
                     },
                     body: JSON.stringify({
-                        model: "moonshot-v1-8k",
+                        model: "moonshot-v1-32k",
                         messages: [
-                            {"role": "system", "content": "你是 Kimi，由 Moonshot AI 提供的人工智能助手。"},
+                            {"role": "system", "content": "你是 Kimi，由 Moonshot AI 提供的人工智能助手。当用户说“请输入文本”时，你应该回答同样的话。"},
                             {"role": "user", "content": message}
                         ],
                         temperature: 0.3,
