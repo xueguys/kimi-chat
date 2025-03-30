@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kimi Chat</title>
+    <meta charset="UTF-8">
+    <style>
+        #chat-container { margin: 20px; max-width: 800px; }
+        #message-input { width: 80%; padding: 10px; }
+        #send-button { padding: 10px 20px; }
+        #chat-history { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div>
+            <input type="text" id="message-input" placeholder="输入消息...">
+            <button id="send-button">发送</button>
+        </div>
+        <div id="chat-history"></div>
+    </div>
+
+    <script>
+        // 改为实际的仓库地址
+        const baseUrl = window.location.origin + "/kimi-chat";
+        document.getElementById('send-button').onclick = async function() {
+            const input = document.getElementById('message-input');
+            const message = input.value;
+            input.value = '';
+            
+            const history = document.getElementById('chat-history');
+            history.innerHTML += `<p><strong>你:</strong> ${message}</p>`;
+            
+            try {
+                const response = await fetch('https://kimi-chat-backend.herokuapp.com/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+                const data = await response.json();
+                history.innerHTML += `<p><strong>Kimi:</strong> ${data.response}</p>`;
+            } catch (error) {
+                history.innerHTML += `<p style="color: red;">错误: ${error}</p>`;
+            }
+        };
+    </script>
+</body>
+</html>
