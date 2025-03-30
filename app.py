@@ -13,7 +13,7 @@ def chat():
         user_message = data.get('message', '')
         
         client = OpenAI(
-            api_key=os.environ.get('MOONSHOT_API_KEY'),
+            api_key=os.environ.get('sk-uNu2QMgEc0Xa2RpN07cXNGL1cWEQgWvFZjFZHMggv0UJkqYJ'),
             base_url="https://api.moonshot.cn/v1"
         )
         
