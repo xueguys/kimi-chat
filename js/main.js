@@ -16,12 +16,12 @@ async function handleSendMessage() {
                 'Authorization': `Bearer ${API_KEY}`
             },
             body: JSON.stringify({
-                model: "moonshot-v1-8k",
+                model: "moonshot-v1-32k",  // Model name
                 messages: [
-                    {"role": "system", "content": "你是 Kimi，由 Moonshot AI 提供的人工智能助手。"},
+                    {"role": "system", "content": "你是 Kimi，由 Moonshot AI 提供的人工智能助手。"}, //role
                     {"role": "user", "content": message}
                 ],
-                temperature: 0.3,
+                temperature: 0.3, // Temperature of the response
                 stream: true
             })
         });
@@ -51,7 +51,7 @@ async function handleSendMessage() {
             }
         }
     } catch (error) {
-        botMessageDiv.textContent = `错误: ${error}`;
+        botMessageDiv.textContent = `错误: ${error}`;  // Display error message
     }
 }
 
